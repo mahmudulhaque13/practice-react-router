@@ -11,6 +11,9 @@ const ProductDetails = () => {
   const { id } = useParams();
 
   const product = products.find((p) => p.id === Number(id));
+  if (!product) {
+    return <h2>Product Not Found</h2>;
+  }
 
   return (
     <div>
