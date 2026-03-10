@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-
 import { useState } from "react";
 
 const products = [
-  { id: 1, name: "Laptop" },
-  { id: 2, name: "Phone" },
-  { id: 3, name: "Headphone" },
+  { id: 1, name: "Laptop", price: 1000 },
+  { id: 2, name: "Phone", price: 500 },
+  { id: 3, name: "Headphone", price: 200 },
 ];
 
 function Products() {
@@ -14,6 +13,8 @@ function Products() {
   const filteredProducts = products.filter((p) =>
     p.name.toLowerCase().includes(search.toLowerCase()),
   );
+
+  const totalPrice = filteredProducts.reduce((sum, p) => sum + p.price, 0);
 
   return (
     <div>
@@ -24,8 +25,14 @@ function Products() {
       />
 
       {filteredProducts.map((p) => (
-        <p key={p.id}>{p.name}</p>
+        <p key={p.id}>
+          <Link to={`/product/${p.id}`}>
+            {p.name} - ${p.price}
+          </Link>
+        </p>
       ))}
+
+      <h3>Total Price: ${totalPrice}</h3>
     </div>
   );
 }
