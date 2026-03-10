@@ -1,17 +1,29 @@
 import { Link } from "react-router-dom";
 
+import { useState } from "react";
+
 const products = [
-  { id: 1, name: "Laptop", price: 1000 },
-  { id: 2, name: "Phone", price: 500 },
-  { id: 3, name: "Headphone", price: 200 },
+  { id: 1, name: "Laptop" },
+  { id: 2, name: "Phone" },
+  { id: 3, name: "Headphone" },
 ];
 
 function Products() {
+  const [search, setSearch] = useState("");
+
+  const filteredProducts = products.filter((p) =>
+    p.name.toLowerCase().includes(search.toLowerCase()),
+  );
+
   return (
     <div>
-      <h2>Total Products: {products.length}</h2>
+      <input
+        type="text"
+        placeholder="Search product"
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
-      {products.map((p) => (
+      {filteredProducts.map((p) => (
         <p key={p.id}>{p.name}</p>
       ))}
     </div>
