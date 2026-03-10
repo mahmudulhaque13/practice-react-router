@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const products = [
   { id: 1, name: "Laptop", price: 1000 },
@@ -9,8 +9,10 @@ const products = [
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const product = products.find((p) => p.id === Number(id));
+
   if (!product) {
     return <h2>Product Not Found</h2>;
   }
@@ -19,6 +21,7 @@ const ProductDetails = () => {
     <div>
       <h2>{product.name}</h2>
       <p>Price: ${product.price}</p>
+      <button onClick={() => navigate(-1)}>Back</button>
     </div>
   );
 };
