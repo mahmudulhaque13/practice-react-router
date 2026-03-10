@@ -14,8 +14,6 @@ function Products() {
     p.name.toLowerCase().includes(search.toLowerCase()),
   );
 
-  const totalPrice = filteredProducts.reduce((sum, p) => sum + p.price, 0);
-
   return (
     <div>
       <input
@@ -24,6 +22,8 @@ function Products() {
         onChange={(e) => setSearch(e.target.value)}
       />
 
+      <h3>Total Products: {filteredProducts.length}</h3>
+
       {filteredProducts.map((p) => (
         <p key={p.id}>
           <Link to={`/product/${p.id}`}>
@@ -31,8 +31,6 @@ function Products() {
           </Link>
         </p>
       ))}
-
-      <h3>Total Price: ${totalPrice}</h3>
     </div>
   );
 }
