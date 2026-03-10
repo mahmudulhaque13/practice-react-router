@@ -19,8 +19,11 @@ function Products() {
       <input
         type="text"
         placeholder="Search product"
+        value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
+
+      <button onClick={() => setSearch("")}>Clear</button>
 
       <h3>Total Products: {filteredProducts.length}</h3>
 
